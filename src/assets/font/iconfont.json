@@ -1,0 +1,16 @@
+{
+  "id": "3557831",
+  "name": "人资作业素材",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "人资作业素材",
+  "glyphs": [
+    {
+      "icon_id": "10392612",
+      "name": "盾牌",
+      "font_class": "dunpai",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}
