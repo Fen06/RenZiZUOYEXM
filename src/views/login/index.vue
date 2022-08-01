@@ -32,7 +32,11 @@
             />
             <img class="yzmphtot" :src="yzm[0]" alt="" @click="upYzm" />
           </el-form-item>
-          <el-button type="primary" @click="onSubmit" class="loginBtn"
+          <el-button
+            type="primary"
+            :loading="falg"
+            @click="onSubmit"
+            class="loginBtn"
             >登录</el-button
           >
         </el-form>
@@ -58,7 +62,8 @@ export default {
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
         code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
       },
-      yzm: []
+      yzm: [],
+      falg: false
     }
   },
 
@@ -73,8 +78,16 @@ export default {
       } else if (this.form.code.trim() === '') {
         return this.$message.error('请输入验证码')
       }
-      await this.$refs.form.validate()
-      this.$store.dispatch('user/Login', this.form)
+      this.falg = true
+      this.$refs.form.validate()
+      await this.$store.dispatch('user/Login', this.form)
+      if (this.$store.state.user.token.msg === '登录成功') {
+        this.$message.success('登录成功')
+      } else {
+        this.$message.error('登录失败')
+        this.falg = false
+        return
+      }
       this.$router.push('/')
     },
     // 点击事件 刷新验证码
