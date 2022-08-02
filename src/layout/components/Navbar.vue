@@ -1,31 +1,15 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
-    <breadcrumb class="breadcrumb-container" />
-
+    <img src="../../assets/image/ZfXlogo.png" alt="" class="logo" />
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img src="../../assets/image/loginLogo.png" class="user-avatar" />
+          <span class="welcome">欢迎您，</span>
+          <span class="user">admin</span>
+          <span class="out">退出</span>
           <i class="el-icon-caret-bottom" />
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
       </el-dropdown>
     </div>
   </div>
@@ -42,10 +26,7 @@ export default {
     Hamburger
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
+    ...mapGetters(['sidebar', 'avatar'])
   },
   methods: {
     toggleSideBar() {
@@ -61,22 +42,32 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 60px;
   overflow: hidden;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  // position: relative;
+  background: #ccc;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  background: url('../../assets/image/bg.png') no-repeat;
+  background-size: 100% 100%;
+  .logo {
+    width: 85px;
+    margin: 12.5px;
+  }
 
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, .025)
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 
@@ -103,10 +94,10 @@ export default {
 
       &.hover-effect {
         cursor: pointer;
-        transition: background .3s;
+        transition: background 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, .025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }
@@ -117,20 +108,41 @@ export default {
       .avatar-wrapper {
         margin-top: 5px;
         position: relative;
-
+        .welcome {
+          position: absolute;
+          right: 155px;
+          color: #fff;
+          bottom: 12px;
+          // margin-right: 50px;
+        }
+        .user {
+          position: absolute;
+          right: 110px;
+          color: #fff;
+          bottom: 12px;
+        }
         .user-avatar {
           cursor: pointer;
           width: 40px;
           height: 40px;
           border-radius: 10px;
+          margin-right: 230px;
+          margin-top: 3px;
         }
-
+        .out {
+          position: absolute;
+          right: 30px;
+          bottom: 12px;
+          font-size: 15px;
+          color: #fff;
+        }
         .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
+          right: 10px;
+          top: 14px;
+          font-size: 18px;
+          color: #fff;
         }
       }
     }

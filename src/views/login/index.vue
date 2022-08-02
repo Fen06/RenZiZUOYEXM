@@ -79,16 +79,17 @@ export default {
         return this.$message.error('请输入验证码')
       }
       this.falg = true
-      this.$refs.form.validate()
+      await this.$refs.form.validate()
       await this.$store.dispatch('user/Login', this.form)
-      if (this.$store.state.user.token.msg === '登录成功') {
-        this.$message.success('登录成功')
-      } else {
-        this.$message.error('登录失败')
-        this.falg = false
-        return
-      }
+      // if (this.$store.state.user.token) {
+      //   this.$message.success('登录成功')
+      // } else {
+      //   this.$message.error('登录失败')
+
+      //   return
+      // }
       this.$router.push('/')
+      this.falg = false
     },
     // 点击事件 刷新验证码
     upYzm() {
@@ -113,6 +114,7 @@ export default {
         }
         console.log(this.form.clientToken)
         const res = await Verification(this.form.clientToken)
+        this.$store.dispatch('user/getcold', this.form.clientToken)
         console.log(res)
         this.yzm.unshift(res.request.responseURL)
       } catch (e) {

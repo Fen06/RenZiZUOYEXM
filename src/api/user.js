@@ -2,13 +2,13 @@ import request from '@/utils/request'
 
 export function Verification(clientToken) {
   return request({
-    url: `/api/user-service/user/imageCode/${clientToken}`
+    url: `/user-service/user/imageCode/${clientToken}`
   })
 }
 
 export function Login(data) {
   return request({
-    url: '/api/user-service/user/login',
+    url: '/user-service/user/login',
     method: 'POST',
     data
   })
