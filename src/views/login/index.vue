@@ -81,14 +81,14 @@ export default {
       this.falg = true
       await this.$refs.form.validate()
       await this.$store.dispatch('user/Login', this.form)
-      // if (this.$store.state.user.token) {
-      //   this.$message.success('登录成功')
-      // } else {
-      //   this.$message.error('登录失败')
+      if (this.$store.state.user.token) {
+        this.$message.success('登录成功')
+        this.$router.push('/')
+      } else {
+        this.$message.error('登录失败')
+        return
+      }
 
-      //   return
-      // }
-      this.$router.push('/')
       this.falg = false
     },
     // 点击事件 刷新验证码
