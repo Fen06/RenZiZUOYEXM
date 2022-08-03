@@ -13,10 +13,6 @@ const service = axios.create({
 // }) // 请求拦截器
 // service.interceptors.response.use(
 //   (res) => {
-//     // const clientToken = store.state.user.cold
-//     // if (res.config.url === `/api/user-service/user/imageCode/${clientToken}`) {
-//     //   return res.request.responseURL
-//     // }
 //     const { success, msg } = res.data
 
 //     if (success) {
