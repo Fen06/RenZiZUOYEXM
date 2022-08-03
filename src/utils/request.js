@@ -8,7 +8,7 @@ const service = axios.create({
 }) // 创建一个axios的实例
 // service.interceptors.request.use((config)=>{
 // if(store.state.user.token){
-//   config.headers
+//
 // }
 // }) // 请求拦截器
 // service.interceptors.response.use(
