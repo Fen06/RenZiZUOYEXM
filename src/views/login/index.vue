@@ -84,7 +84,7 @@ export default {
         await this.$refs.form.validate()
         console.log(222)
         await this.$store.dispatch('user/Login', this.form)
-      
+        this.$router.push('/')
       } catch (e) {
         console.log(e)
       } finally {

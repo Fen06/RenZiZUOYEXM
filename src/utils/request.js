@@ -39,19 +39,29 @@ service.interceptors.response.use(
       //
       return res.request.responseURL
     }
+    // const { typeId } = res.data
+    // if (res.data[0].typeId === 1) {
+    //   return res.data
+    // }
     const { status } = res.data
     if (status) {
       return res
     }
+
+    // if (res.data.pageIndex === '1') {
+    //   return res.data
+    // }
     const { success, msg } = res.data
     if (success) {
       Message.success(msg)
       router.push('/')
+      Message.success(msg)
       // window.location.reload()
       return res.data
+
+      // return Promise.reject(new Error(msg))
     }
-    Message.error(msg)
-    return Promise.reject(new Error(msg))
+    return res
   },
   async function (error) {
     if (error?.response?.status === 401) {

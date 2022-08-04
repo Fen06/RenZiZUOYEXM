@@ -19,3 +19,6 @@ export function UserInfo(id) {
     url: `/user-service/user/${id}`
   })
 }
+
+
+

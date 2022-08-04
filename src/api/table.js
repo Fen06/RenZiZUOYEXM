@@ -1,9 +1,7 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export function getList() {
   return request({
-    url: '/vue-admin-template/table/list',
-    method: 'get',
-    params
+    url: '/task-service/task/search'
   })
 }
