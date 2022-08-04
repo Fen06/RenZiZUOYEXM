@@ -13,3 +13,11 @@ export function setToken(token) {
 export function removeToken() {
   return Cookies.remove(TokenKey)
 }
+
+export function setTokenTime() {
+  Cookies.set('tokenTimer', Date.now())
+}
+
+export function getTokenTimer(){
+  return Cookies.get('tokenTimer')
+}

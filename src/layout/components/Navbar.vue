@@ -4,11 +4,21 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img src="../../assets/image/loginLogo.png" class="user-avatar" />
+          <img
+            :src="
+              $store.state.user.userInformation.image
+                ? '$store.state.user.userInformation.image'
+                : '$store.state.user.userInformation.image' + 11
+            "
+            class="user-avatar"
+            v-imgError="defaultImg"
+          />
           <span class="welcome">欢迎您，</span>
-          <span class="user">admin</span>
-          <span class="out">退出</span>
-          <i class="el-icon-caret-bottom" />
+          <span class="user">{{
+            $store.state.user.userInformation.userName
+          }}</span>
+          <span class="out" @click="logout">退出</span>
+          <i class="el-icon-caret-bottom" @click="logout" />
         </div>
       </el-dropdown>
     </div>
@@ -16,14 +26,24 @@
 </template>
 
 <script>
+import { UserInfo } from '@/api/user'
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import defaultImg from '@/assets/image/loginLogo.png'
 export default {
+  data() {
+    return {
+      id: '',
+      defaultImg
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger
+  },
+  created() {
+    this.UserInfo()
   },
   computed: {
     ...mapGetters(['sidebar', 'avatar'])
@@ -35,6 +55,18 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    async UserInfo() {
+      try {
+        this.id = this.$store.state.user.userInfo.userId
+        console.log(this.id)
+        const res = await UserInfo(this.id)
+        this.$store.dispatch('user/getUserInformation', res.data)
+        console.log(res.data)
+      } catch (e) {
+        console.log('userInfo', e)
+        console.log(this.$store.state.user.userInfo.userId)
+      }
     }
   }
 }
@@ -135,6 +167,7 @@ export default {
           bottom: 12px;
           font-size: 15px;
           color: #fff;
+          cursor: pointer;
         }
         .el-icon-caret-bottom {
           cursor: pointer;

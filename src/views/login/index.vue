@@ -73,23 +73,23 @@ export default {
 
   methods: {
     async onSubmit() {
-      if (this.form.loginName !== 'admin' || this.form.password !== 'admin') {
-        return this.$message.error('账号或密码错误')
-      } else if (this.form.code.trim() === '') {
-        return this.$message.error('请输入验证码')
+      try {
+        if (this.form.loginName !== 'admin' || this.form.password !== 'admin') {
+          return this.$message.error('账号或密码错误')
+        } else if (this.form.code.trim() === '') {
+          return this.$message.error('请输入验证码')
+        }
+        console.log(111)
+        this.falg = true
+        await this.$refs.form.validate()
+        console.log(222)
+        await this.$store.dispatch('user/Login', this.form)
+      
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.falg = false
       }
-      this.falg = true
-      await this.$refs.form.validate()
-      await this.$store.dispatch('user/Login', this.form)
-      if (this.$store.state.user.token) {
-        this.$message.success('登录成功')
-        this.$router.push('/')
-      } else {
-        this.$message.error('登录失败')
-        return
-      }
-
-      this.falg = false
     },
     // 点击事件 刷新验证码
     upYzm() {
@@ -112,11 +112,13 @@ export default {
         } else {
           this.form.clientToken = num
         }
-        console.log(this.form.clientToken)
+        // console.log(this.form.clientToken)
+        this.$store.dispatch('user/getrandomCold', this.form.clientToken)
+        // console.log(this.$store.state.user.randomCold)
         const res = await Verification(this.form.clientToken)
-        this.$store.dispatch('user/getcold', this.form.clientToken)
         console.log(res)
-        this.yzm.unshift(res.request.responseURL)
+        this.yzm.unshift(res)
+        this.$store.dispatch('user/getcold', this.yzm[0])
       } catch (e) {
         console.log('yzm', e)
       }

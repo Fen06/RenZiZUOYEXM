@@ -5,9 +5,10 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
-
+import * as directive from '@/directives'
 import '@/styles/index.scss' // global css
 import '@/assets/font/iconfont.css'
+import '@/assets/font_2/iconfont.css'
 import App from './App'
 import store from './store'
 import router from './router'
@@ -34,7 +35,9 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
+for (let key in directive) {
+  Vue.directive(key, directive[key])
+}
 new Vue({
   el: '#app',
   router,

@@ -58,6 +58,7 @@
 
     .svg-icon {
       margin-right: 16px;
+      font-size: 20px;
     }
 
     .sub-el-icon {
@@ -74,13 +75,16 @@
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {
+      // color: #000 !important;
       &:hover {
         background-color: $menuHover !important;
       }
     }
 
+    // #999999
     .is-active > .el-submenu__title {
-      color: $subMenuActiveText !important;
+      color: #5f84ff !important;
+      // color: $subMenuActiveText !important;
     }
 
     & .nest-menu .el-submenu > .el-submenu__title,
@@ -113,6 +117,7 @@
 
         .svg-icon {
           margin-left: 20px;
+          font-size: 20px;
         }
 
         .sub-el-icon {
@@ -204,6 +209,7 @@
   .el-menu-item {
     &:hover {
       // you can use $subMenuHover
+
       background-color: $menuHover !important;
     }
   }

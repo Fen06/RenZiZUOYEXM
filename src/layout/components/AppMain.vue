@@ -21,11 +21,13 @@ export default {
 .app-main {
   /*50 = navbar  */
   min-height: calc(100vh - 50px);
-  width: 100%;
+  width: 80%;
   position: relative;
   overflow: hidden;
+  top: 30px;
+  /* left: 120px; */
 }
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>

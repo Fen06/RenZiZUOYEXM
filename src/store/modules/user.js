@@ -1,9 +1,13 @@
-import { Login } from '@/api/user'
+import { Login, UserInfo } from '@/api/user'
+import { setTokenTimer } from '@/utils/auth'
 export default {
   namespaced: true,
   state: {
     token: '',
-    cold: ''
+    cold: '',
+    randomCold: '',
+    userInfo: {},
+    userInformation: {}
   },
   mutations: {
     setToken(state, payload) {
@@ -11,19 +15,37 @@ export default {
     },
     setcold(state, payload) {
       state.cold = payload
+    },
+    setrandomCold(state, payload) {
+      state.randomCold = payload
+    },
+    setUserInfo(state, payload) {
+      state.userInfo = payload
+    },
+    setUserInformation(state, payload) {
+      state.userInformation = payload
     }
   },
   actions: {
     async Login(context, payload) {
       const res = await Login(payload)
       console.log(res)
-      const token = res.data.token
-      const cod = res.data
-      // console.log(cod)
+      const token = res.token
       context.commit('setToken', token)
+      context.commit('setUserInfo', res)
+      setTokenTimer()
     },
     getcold(context, payload) {
       context.commit('setcold', payload)
+    },
+    getrandomCold(context, payload) {
+      context.commit('setrandomCold', payload)
+    },
+    logout(context) {
+      context.commit('setToken', '')
+    },
+    getUserInformation(context, payload) {
+      context.commit('setUserInformation', payload)
     }
   },
   getters: {}
