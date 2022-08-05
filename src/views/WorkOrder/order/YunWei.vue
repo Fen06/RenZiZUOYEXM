@@ -16,7 +16,6 @@
         <fj-button class="new" color="orange" fonstClolr="white"
           ><i class="el-icon-circle-plus-outline"></i>新增</fj-button
         >
-        <fj-button>工单配置</fj-button>
       </el-row>
 
       <el-row>

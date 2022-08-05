@@ -1,5 +1,5 @@
 import { Login, UserInfo } from '@/api/user'
-import { setTokenTimer } from '@/utils/auth'
+import { setTokenTime } from '@/utils/auth'
 export default {
   namespaced: true,
   state: {
@@ -33,7 +33,7 @@ export default {
       const token = res.token
       context.commit('setToken', token)
       context.commit('setUserInfo', res)
-      setTokenTimer()
+      setTokenTime()
     },
     getcold(context, payload) {
       context.commit('setcold', payload)
