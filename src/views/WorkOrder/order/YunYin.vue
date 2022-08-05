@@ -42,8 +42,7 @@ export default {
         { prop: 'Type', label: '工单方式' },
         { prop: 'taskStatusTypeEntity', label: '工单状态' },
         { prop: 'userName', label: '运营人员' },
-        { prop: 'createTime', label: '创建日期' },
-        { prop: 'operation', label: '操作' }
+        { prop: 'createTime', label: '创建日期' }
       ]
     }
   },
@@ -73,8 +72,7 @@ export default {
             Type: item.createType === 1 ? '手动' : '自动',
             taskStatusTypeEntity: item.taskStatusTypeEntity.statusName,
             userName: item.userName,
-            createTime: item.createTime,
-            operation: '查看详情'
+            createTime: item.createTime
           })
         })
         // console.log('new', newArr)

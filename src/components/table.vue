@@ -7,9 +7,10 @@
       :key="index"
       :label="item.label"
       :prop="item.prop"
-      width="180"
+      width="195"
     >
     </el-table-column>
+    <el-table-column label="操作"> 删除 </el-table-column>
   </el-table>
 </template>
 
