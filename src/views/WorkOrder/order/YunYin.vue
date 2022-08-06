@@ -75,29 +75,9 @@ export default {
             createTime: item.createTime
           })
         })
-        // console.log('new', newArr)
-        // for (let i = 0; i < ShowData.length; i++) {
-        //   ShowData[i].createType === 1
-        //     ? (ShowData[i].createType = '手动')
-        //     : (ShowData[i].createType = '自动')
-        //   newArr.push([
-        //     ShowData[i].innerCode,
-        //     ShowData[i].taskType.typeName,
-        //     ShowData[i].createType,
-        //     ShowData[i].taskStatusTypeEntity.statusName,
-        //     ShowData[i].userName,
-        //     ShowData[i].updateTime
-        //   ])
-        // }
-
-        // console.log(newArr)
-        // this.RoughDisplay = newArr
-        // console.log(this.operateList)
         console.log('newArr', newArr)
         this.tableData = newArr
         console.log('this.tableData', this.tableData)
-        // this.operateList = newArr
-        // console.log(this.operateList)
       } catch (e) {
         console.log('gd', e)
       }
